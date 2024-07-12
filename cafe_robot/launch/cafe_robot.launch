@@ -1,0 +1,7 @@
+<launch>
+  <arg name="model" default="$(find cafe_robot)/urdf/cafe_robot.urdf"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+  <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="-urdf -model $(arg model)" output="screen"/>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find cafe_robot)/rviz/cafe_robot.rviz"/>
+  <node pkg="cafe_robot" type="robot_controller.py" name="robot_controller" output="screen"/>
+</launch>
